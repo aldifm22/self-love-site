@@ -1,60 +1,86 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>in case you didnt love yourself today</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #fff5f7;
-      text-align: center;
-      padding: 50px;
-    }
+<meta charset="UTF-8">
+<title>in case you didnt love yourself today</title>
 
-    img {
-      width: 250px;
-      border-radius: 20px;
-      margin-bottom: 20px;
-    }
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #fff5f7, #ffe3ec);
+    text-align: center;
+    padding: 60px 20px;
+  }
 
-    button {
-      padding: 12px 24px;
-      border: none;
-      border-radius: 25px;
-      background: #ff4d6d;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-    }
+  h1 {
+    font-weight: 600;
+    margin-bottom: 25px;
+  }
 
-    #poem {
-      margin-top: 25px;
-      display: none;
-      font-size: 18px;
-      line-height: 1.6;
-    }
-  </style>
+  button {
+    padding: 12px 28px;
+    border: none;
+    border-radius: 30px;
+    background: #ff4d6d;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+
+  button:hover {
+    transform: scale(1.05);
+  }
+
+  img {
+    width: 260px;
+    border-radius: 20px;
+    margin-top: 30px;
+  }
+
+  #poem {
+    margin-top: 25px;
+    font-size: 18px;
+    line-height: 1.8;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hidden {
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+
+  .show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
 </head>
+
 <body>
 
-  <img src="photo.jpg" alt="self love">
+<h1>in case you didnt love yourself today</h1>
 
-  <h1>in case you didnt love yourself today</h1>
+<button onclick="showLove()">❤️ Love</button>
 
-  <button onclick="showPoem()">❤️ Love</button>
+<img id="photo" src="photo.jpg" alt="self love" class="hidden">
 
-  <div id="poem">
-    Aku harap kamu bisa melihat.<br>
-    Ribuan bintang jatuh dengan segala rasi dan zodiaknya.<br>
-    Dan aku jatuh untuk pelukmu.
-	dan kamu memeluk ombak tenang dalam malam
-  </div>
+<div id="poem" class="hidden">
+  Aku harap kamu bisa melihat.<br>
+  Ribuan bintang jatuh dengan segala rasi dan zodiaknya.<br>
+  Dan aku jatuh untuk pelukmu,<br>
+  dan kamu memeluk ombak tenang dalam malam.
+</div>
 
-  <script>
-    function showPoem() {
-      document.getElementById("poem").style.display = "block";
-    }
-  </script>
+<script>
+  function showLove() {
+    document.getElementById("photo").classList.add("show");
+    document.getElementById("poem").classList.add("show");
+  }
+</script>
 
 </body>
 </html>
