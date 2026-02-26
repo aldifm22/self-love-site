@@ -7,14 +7,23 @@
 <style>
   body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom, #fff5f7, #ffe3ec);
+    background: linear-gradient(to bottom, #f8e1e7, #eac7d2);
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    padding: 60px 20px;
+    padding: 40px 20px;
   }
 
   h1 {
-    font-weight: 600;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
   }
 
   button {
@@ -32,19 +41,23 @@
     transform: scale(1.05);
   }
 
+  .content {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   img {
     width: 260px;
     border-radius: 20px;
-    margin-top: 30px;
+    margin-bottom: 25px;
   }
 
   #poem {
-    margin-top: 25px;
     font-size: 18px;
     line-height: 1.8;
     max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
   }
 
   .hidden {
@@ -62,17 +75,23 @@
 
 <body>
 
-<h1>in case you didnt love yourself today</h1>
+<div class="container">
 
-<button onclick="showLove()">❤️ Love</button>
+  <h1>in case you didnt love yourself today</h1>
 
-<img id="photo" src="photo.jpg" alt="self love" class="hidden">
+  <button onclick="showLove()">❤️ Love</button>
 
-<div id="poem" class="hidden">
-  Aku harap kamu bisa melihat.<br>
-  Ribuan bintang jatuh dengan segala rasi dan zodiaknya.<br>
-  Dan aku jatuh untuk pelukmu,<br>
-  dan kamu memeluk ombak tenang dalam malam.
+  <div class="content">
+    <img id="photo" src="photo.jpg" alt="self love" class="hidden">
+
+    <div id="poem" class="hidden">
+      Aku harap kamu bisa melihat.<br>
+      Ribuan bintang jatuh dengan segala rasi dan zodiaknya.<br>
+      Dan aku jatuh untuk pelukmu,<br>
+      dan kamu memeluk ombak tenang dalam malam.
+    </div>
+  </div>
+
 </div>
 
 <script>
