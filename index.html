@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 <head>
 <meta charset="UTF-8">
@@ -8,9 +9,45 @@
 
 body{
 font-family:Arial, sans-serif;
-background:linear-gradient(to bottom,#f8e1e7,#eac7d2);
 margin:0;
+background:linear-gradient(to bottom,#0b0c2a,#1a1c4a);
+color:white;
+overflow:hidden;
 }
+
+/* FALLING STARS */
+
+.stars{
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+pointer-events:none;
+}
+
+.star{
+position:absolute;
+width:2px;
+height:2px;
+background:white;
+animation:fall 5s linear infinite;
+opacity:.8;
+}
+
+@keyframes fall{
+0%{
+transform:translateY(-10vh);
+opacity:0;
+}
+10%{opacity:1;}
+100%{
+transform:translateY(110vh);
+opacity:0;
+}
+}
+
+/* MAIN LAYOUT */
 
 .container{
 min-height:100vh;
@@ -20,6 +57,8 @@ align-items:center;
 justify-content:center;
 text-align:center;
 padding:40px;
+position:relative;
+z-index:2;
 }
 
 /* BUTTON */
@@ -36,7 +75,7 @@ transition:.3s;
 }
 
 button:hover{
-transform:scale(1.05);
+transform:scale(1.08);
 }
 
 /* PHOTO */
@@ -48,7 +87,15 @@ margin-top:30px;
 
 #photo img{
 width:260px;
-border-radius:18px;
+border-radius:20px;
+opacity:0;
+transform:scale(.9);
+transition:2s;
+}
+
+.show-photo{
+opacity:1 !important;
+transform:scale(1);
 }
 
 /* POEM */
@@ -57,17 +104,19 @@ border-radius:18px;
 margin-top:35px;
 font-size:18px;
 line-height:1.9;
-max-width:500px;
+max-width:520px;
 display:none;
 }
 
 .line{
 opacity:0;
-transition:0.8s;
+transform:translateY(15px);
+transition:.8s;
 }
 
 .show-line{
 opacity:1;
+transform:translateY(0);
 }
 
 /* VIDEO */
@@ -79,13 +128,17 @@ margin-top:40px;
 
 #videoSection video{
 width:420px;
-border-radius:18px;
+border-radius:20px;
+box-shadow:0 0 25px rgba(255,255,255,.2);
 }
 
 </style>
+
 </head>
 
 <body>
+
+<div class="stars" id="stars"></div>
 
 <div class="container">
 
@@ -94,7 +147,7 @@ border-radius:18px;
 <button id="loveButton" onclick="startStory()">❤️ Love</button>
 
 <div id="photo">
-<img src="photo.jpg">
+<img id="romanticPhoto" src="photo.jpg">
 </div>
 
 <div id="poem">
@@ -118,6 +171,25 @@ border-radius:18px;
 
 <script>
 
+/* CREATE FALLING STARS */
+
+const starContainer=document.getElementById("stars");
+
+for(let i=0;i<60;i++){
+
+const star=document.createElement("div");
+star.classList.add("star");
+
+star.style.left=Math.random()*100+"vw";
+star.style.animationDuration=(3+Math.random()*4)+"s";
+star.style.opacity=Math.random();
+
+starContainer.appendChild(star);
+
+}
+
+/* STORY */
+
 function startStory(){
 
 const button=document.getElementById("loveButton");
@@ -126,28 +198,31 @@ button.disabled=true;
 
 /* SHOW PHOTO */
 
-document.getElementById("photo").style.display="block";
+const photo=document.getElementById("photo");
+photo.style.display="block";
+
+setTimeout(()=>{
+document.getElementById("romanticPhoto").classList.add("show-photo");
+},200);
 
 /* SHOW POEM */
 
 setTimeout(()=>{
 document.getElementById("poem").style.display="block";
-},800);
-
-/* POEM LINE ANIMATION */
+},1200);
 
 const lines=document.querySelectorAll(".line");
 
 lines.forEach((line,index)=>{
 setTimeout(()=>{
 line.classList.add("show-line");
-},1200+(index*900));
+},1500+(index*900));
 });
 
 /* HIDE PHOTO + POEM */
 
 setTimeout(()=>{
-document.getElementById("photo").style.display="none";
+photo.style.display="none";
 document.getElementById("poem").style.display="none";
 },6500);
 
