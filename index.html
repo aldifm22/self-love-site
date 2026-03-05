@@ -22,6 +22,8 @@ text-align:center;
 padding:40px;
 }
 
+/* button */
+
 button{
 padding:12px 28px;
 border:none;
@@ -37,18 +39,14 @@ button:hover{
 transform:scale(1.05);
 }
 
-/* PHOTO GALLERY */
+/* photo */
 
-.gallery{
-display:flex;
-gap:20px;
+.photo{
 margin-top:30px;
-justify-content:center;
-align-items:center;
 }
 
-.gallery img{
-width:220px;
+.photo img{
+width:260px;
 border-radius:18px;
 opacity:0;
 transform:translateY(20px);
@@ -60,10 +58,10 @@ opacity:1;
 transform:translateY(0);
 }
 
-/* POEM */
+/* poem */
 
 #poem{
-margin-top:30px;
+margin-top:35px;
 font-size:18px;
 line-height:1.9;
 max-width:500px;
@@ -80,31 +78,30 @@ opacity:1;
 transform:translateY(0);
 }
 
-/* FADE OUT */
+/* fade out */
 
 .fade-out{
-opacity:0;
+opacity:0 !important;
 transition:1.5s;
 }
 
-/* VIDEO */
+/* video */
 
 #videoSection{
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
+margin-top:40px;
 opacity:0;
 transition:1.5s;
+display:flex;
+justify-content:center;
 }
 
 #videoSection video{
-width:480px;
-border-radius:20px;
+width:420px;
+border-radius:18px;
 }
 
 .show-video{
-opacity:1;
+opacity:1 !important;
 }
 
 </style>
@@ -118,10 +115,8 @@ opacity:1;
 
 <button id="loveButton" onclick="startStory()">❤️ Love</button>
 
-<div class="gallery" id="gallery">
-<img src="photo1.jpg">
-<img src="photo2.jpg">
-<img src="photo3.jpg">
+<div class="photo">
+<img id="mainPhoto" src="photo.jpg">
 </div>
 
 <div id="poem">
@@ -133,13 +128,13 @@ opacity:1;
 
 </div>
 
-</div>
-
 <div id="videoSection">
 
-<video id="loveVideo" controls>
+<video autoplay muted loop playsinline>
 <source src="video.mp4" type="video/mp4">
 </video>
+
+</div>
 
 </div>
 
@@ -150,13 +145,13 @@ function startStory(){
 document.getElementById("loveButton").innerHTML="❤️ Loved";
 document.getElementById("loveButton").disabled=true;
 
-const images=document.querySelectorAll(".gallery img");
+/* show photo */
 
-images.forEach((img,index)=>{
 setTimeout(()=>{
-img.classList.add("show-img");
-},index*300);
-});
+document.getElementById("mainPhoto").classList.add("show-img");
+},300);
+
+/* poem animation */
 
 const lines=document.querySelectorAll(".line");
 
@@ -166,25 +161,17 @@ line.classList.add("show-line");
 },1000+(index*900));
 });
 
-/* fade out photos + poem */
+/* fade photo + poem */
 
 setTimeout(()=>{
-document.getElementById("gallery").classList.add("fade-out");
+document.getElementById("mainPhoto").classList.add("fade-out");
 document.getElementById("poem").classList.add("fade-out");
 },6000);
 
-/* show video centered */
+/* show video */
 
 setTimeout(()=>{
-
-const videoSection=document.getElementById("videoSection");
-const video=document.getElementById("loveVideo");
-
-videoSection.classList.add("show-video");
-
-/* autoplay WITH sound */
-video.play();
-
+document.getElementById("videoSection").classList.add("show-video");
 },7500);
 
 }
