@@ -22,6 +22,8 @@ text-align:center;
 padding:40px;
 }
 
+/* BUTTON */
+
 button{
 padding:12px 28px;
 border:none;
@@ -39,19 +41,14 @@ transform:scale(1.05);
 
 /* PHOTO */
 
-.photo{
+#photo{
+display:none;
 margin-top:30px;
 }
 
-.photo img{
+#photo img{
 width:260px;
 border-radius:18px;
-opacity:0;
-transition:1s;
-}
-
-.show-img{
-opacity:1;
 }
 
 /* POEM */
@@ -61,39 +58,28 @@ margin-top:35px;
 font-size:18px;
 line-height:1.9;
 max-width:500px;
+display:none;
 }
 
 .line{
 opacity:0;
-transition:.8s;
+transition:0.8s;
 }
 
 .show-line{
 opacity:1;
 }
 
-/* FADE OUT */
-
-.fade-out{
-opacity:0;
-transition:1.5s;
-}
-
 /* VIDEO */
 
 #videoSection{
+display:none;
 margin-top:40px;
-opacity:0;
-transition:1.5s;
 }
 
 #videoSection video{
 width:420px;
 border-radius:18px;
-}
-
-.show-video{
-opacity:1;
 }
 
 </style>
@@ -107,8 +93,8 @@ opacity:1;
 
 <button id="loveButton" onclick="startStory()">❤️ Love</button>
 
-<div class="photo">
-<img id="mainPhoto" src="photo.jpg">
+<div id="photo">
+<img src="photo.jpg">
 </div>
 
 <div id="poem">
@@ -134,38 +120,42 @@ opacity:1;
 
 function startStory(){
 
-const button = document.getElementById("loveButton");
+const button=document.getElementById("loveButton");
 button.innerHTML="❤️ Loved";
 button.disabled=true;
 
 /* SHOW PHOTO */
 
-setTimeout(()=>{
-document.getElementById("mainPhoto").classList.add("show-img");
-},300);
+document.getElementById("photo").style.display="block";
 
-/* POEM LINES */
+/* SHOW POEM */
+
+setTimeout(()=>{
+document.getElementById("poem").style.display="block";
+},800);
+
+/* POEM LINE ANIMATION */
 
 const lines=document.querySelectorAll(".line");
 
 lines.forEach((line,index)=>{
 setTimeout(()=>{
 line.classList.add("show-line");
-},1000 + index*900);
+},1200+(index*900));
 });
 
-/* FADE OUT PHOTO + POEM */
+/* HIDE PHOTO + POEM */
 
 setTimeout(()=>{
-document.getElementById("mainPhoto").classList.add("fade-out");
-document.getElementById("poem").classList.add("fade-out");
-},6000);
+document.getElementById("photo").style.display="none";
+document.getElementById("poem").style.display="none";
+},6500);
 
 /* SHOW VIDEO */
 
 setTimeout(()=>{
-document.getElementById("videoSection").classList.add("show-video");
-},7500);
+document.getElementById("videoSection").style.display="block";
+},7000);
 
 }
 
