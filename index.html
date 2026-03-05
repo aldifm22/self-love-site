@@ -22,8 +22,6 @@ text-align:center;
 padding:40px;
 }
 
-/* button */
-
 button{
 padding:12px 28px;
 border:none;
@@ -39,7 +37,7 @@ button:hover{
 transform:scale(1.05);
 }
 
-/* photo */
+/* PHOTO */
 
 .photo{
 margin-top:30px;
@@ -49,16 +47,14 @@ margin-top:30px;
 width:260px;
 border-radius:18px;
 opacity:0;
-transform:translateY(20px);
 transition:1s;
 }
 
 .show-img{
 opacity:1;
-transform:translateY(0);
 }
 
-/* poem */
+/* POEM */
 
 #poem{
 margin-top:35px;
@@ -69,30 +65,26 @@ max-width:500px;
 
 .line{
 opacity:0;
-transform:translateY(15px);
 transition:.8s;
 }
 
 .show-line{
 opacity:1;
-transform:translateY(0);
 }
 
-/* fade out */
+/* FADE OUT */
 
 .fade-out{
-opacity:0 !important;
+opacity:0;
 transition:1.5s;
 }
 
-/* video */
+/* VIDEO */
 
 #videoSection{
 margin-top:40px;
 opacity:0;
 transition:1.5s;
-display:flex;
-justify-content:center;
 }
 
 #videoSection video{
@@ -101,7 +93,7 @@ border-radius:18px;
 }
 
 .show-video{
-opacity:1 !important;
+opacity:1;
 }
 
 </style>
@@ -130,7 +122,7 @@ opacity:1 !important;
 
 <div id="videoSection">
 
-<video autoplay muted loop playsinline>
+<video controls>
 <source src="video.mp4" type="video/mp4">
 </video>
 
@@ -142,33 +134,34 @@ opacity:1 !important;
 
 function startStory(){
 
-document.getElementById("loveButton").innerHTML="❤️ Loved";
-document.getElementById("loveButton").disabled=true;
+const button = document.getElementById("loveButton");
+button.innerHTML="❤️ Loved";
+button.disabled=true;
 
-/* show photo */
+/* SHOW PHOTO */
 
 setTimeout(()=>{
 document.getElementById("mainPhoto").classList.add("show-img");
 },300);
 
-/* poem animation */
+/* POEM LINES */
 
 const lines=document.querySelectorAll(".line");
 
 lines.forEach((line,index)=>{
 setTimeout(()=>{
 line.classList.add("show-line");
-},1000+(index*900));
+},1000 + index*900);
 });
 
-/* fade photo + poem */
+/* FADE OUT PHOTO + POEM */
 
 setTimeout(()=>{
 document.getElementById("mainPhoto").classList.add("fade-out");
 document.getElementById("poem").classList.add("fade-out");
 },6000);
 
-/* show video */
+/* SHOW VIDEO */
 
 setTimeout(()=>{
 document.getElementById("videoSection").classList.add("show-video");
