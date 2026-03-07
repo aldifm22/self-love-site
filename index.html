@@ -27,13 +27,40 @@ border-radius:50%;
 background:radial-gradient(circle at 30% 30%, #fff, #ddd 60%, #bbb);
 box-shadow:0 0 40px rgba(255,255,255,0.6);
 animation:moonFloat 6s ease-in-out infinite;
-z-index:1;
+z-index:2;
 }
 
 @keyframes moonFloat{
 0%{transform:translateY(0);}
 50%{transform:translateY(-15px);}
 100%{transform:translateY(0);}
+}
+
+/* MOON REFLECTION */
+
+.moon-reflection{
+position:fixed;
+bottom:120px;
+right:160px;
+width:120px;
+height:200px;
+background:linear-gradient(
+to bottom,
+rgba(255,255,255,0.25),
+rgba(255,255,255,0.15),
+rgba(255,255,255,0.05),
+transparent
+);
+filter:blur(8px);
+opacity:.6;
+animation:reflectionMove 8s ease-in-out infinite;
+z-index:1;
+}
+
+@keyframes reflectionMove{
+0%{transform:scaleX(1);}
+50%{transform:scaleX(1.2);}
+100%{transform:scaleX(1);}
 }
 
 /* FALLING STARS */
@@ -72,7 +99,7 @@ background:linear-gradient(-45deg, white, rgba(255,255,255,0));
 opacity:0;
 transform:rotate(45deg);
 pointer-events:none;
-z-index:1;
+z-index:2;
 }
 
 @keyframes shoot{
@@ -116,7 +143,7 @@ opacity:0.6;
 100%{transform:translateX(-50%);}
 }
 
-/* MAIN LAYOUT */
+/* MAIN CONTENT */
 
 .container{
 min-height:100vh;
@@ -127,7 +154,7 @@ justify-content:center;
 text-align:center;
 padding:40px;
 position:relative;
-z-index:2;
+z-index:3;
 }
 
 /* BUTTON */
@@ -208,6 +235,8 @@ box-shadow:0 0 25px rgba(255,255,255,.2);
 <body>
 
 <div class="moon"></div>
+<div class="moon-reflection"></div>
+
 <div class="stars" id="stars"></div>
 
 <div class="container">
