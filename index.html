@@ -36,13 +36,31 @@ opacity:.8;
 }
 
 @keyframes fall{
-0%{
-transform:translateY(-10vh);
-opacity:0;
-}
+0%{transform:translateY(-10vh);opacity:0;}
 10%{opacity:1;}
+100%{transform:translateY(110vh);opacity:0;}
+}
+
+/* SHOOTING STAR */
+
+.shooting-star{
+position:fixed;
+width:120px;
+height:2px;
+background:linear-gradient(-45deg, white, rgba(255,255,255,0));
+opacity:0;
+transform:rotate(45deg);
+pointer-events:none;
+z-index:1;
+}
+
+@keyframes shoot{
+0%{
+transform:translate(0,0) rotate(45deg);
+opacity:1;
+}
 100%{
-transform:translateY(110vh);
+transform:translate(800px,800px) rotate(45deg);
 opacity:0;
 }
 }
@@ -160,11 +178,9 @@ box-shadow:0 0 25px rgba(255,255,255,.2);
 </div>
 
 <div id="videoSection">
-
 <video controls>
 <source src="video.mp4" type="video/mp4">
 </video>
-
 </div>
 
 </div>
@@ -187,6 +203,30 @@ star.style.opacity=Math.random();
 starContainer.appendChild(star);
 
 }
+
+/* SHOOTING STAR */
+
+function createShootingStar(){
+
+const star=document.createElement("div");
+star.classList.add("shooting-star");
+
+star.style.top=Math.random()*40+"vh";
+star.style.left=Math.random()*40+"vw";
+
+star.style.animation="shoot 1.2s ease-out forwards";
+
+document.body.appendChild(star);
+
+setTimeout(()=>{
+star.remove();
+},1200);
+
+}
+
+setInterval(()=>{
+createShootingStar();
+},4000 + Math.random()*4000);
 
 /* STORY */
 
