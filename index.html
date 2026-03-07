@@ -15,6 +15,27 @@ color:white;
 overflow:hidden;
 }
 
+/* MOON */
+
+.moon{
+position:fixed;
+top:80px;
+right:120px;
+width:120px;
+height:120px;
+border-radius:50%;
+background:radial-gradient(circle at 30% 30%, #fff, #ddd 60%, #bbb);
+box-shadow:0 0 40px rgba(255,255,255,0.6);
+animation:moonFloat 6s ease-in-out infinite;
+z-index:1;
+}
+
+@keyframes moonFloat{
+0%{transform:translateY(0);}
+50%{transform:translateY(-15px);}
+100%{transform:translateY(0);}
+}
+
 /* FALLING STARS */
 
 .stars{
@@ -156,6 +177,7 @@ box-shadow:0 0 25px rgba(255,255,255,.2);
 
 <body>
 
+<div class="moon"></div>
 <div class="stars" id="stars"></div>
 
 <div class="container">
@@ -187,7 +209,7 @@ box-shadow:0 0 25px rgba(255,255,255,.2);
 
 <script>
 
-/* CREATE FALLING STARS */
+/* FALLING STARS */
 
 const starContainer=document.getElementById("stars");
 
@@ -236,16 +258,12 @@ const button=document.getElementById("loveButton");
 button.innerHTML="❤️ Loved";
 button.disabled=true;
 
-/* SHOW PHOTO */
-
 const photo=document.getElementById("photo");
 photo.style.display="block";
 
 setTimeout(()=>{
 document.getElementById("romanticPhoto").classList.add("show-photo");
 },200);
-
-/* SHOW POEM */
 
 setTimeout(()=>{
 document.getElementById("poem").style.display="block";
@@ -259,14 +277,10 @@ line.classList.add("show-line");
 },1500+(index*900));
 });
 
-/* HIDE PHOTO + POEM */
-
 setTimeout(()=>{
 photo.style.display="none";
 document.getElementById("poem").style.display="none";
 },6500);
-
-/* SHOW VIDEO */
 
 setTimeout(()=>{
 document.getElementById("videoSection").style.display="block";
